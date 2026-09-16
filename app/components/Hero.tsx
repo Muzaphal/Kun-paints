@@ -9,17 +9,17 @@ import Link from 'next/link'
 const Hero = () => {
     const slides = [
         {
-            image: '/images/hero-1.jpg',
+            image: '/images/silk.png',
             title: 'Transform Your Space',
             subtitle: 'With Premium Quality Paints',
         },
         {
-            image: '/images/hero-2.jpg',
+            image: '/images/primer.png',
             title: 'Vibrant Colors',
             subtitle: 'For Every Imagination',
         },
         {
-            image: '/images/hero-3.jpg',
+            image: '/images/undercoat.png',
             title: 'Lasting Protection',
             subtitle: 'For Years to Come',
         },

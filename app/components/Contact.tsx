@@ -25,9 +25,9 @@ const Contact = () => {
     }
 
     const contactInfo = [
-        { icon: FaPhone, text: '+1 234 567 890', label: 'Phone' },
+        { icon: FaPhone, text: '+256 759 471 501', label: 'Phone' },
         { icon: FaEnvelope, text: 'info@kunpaints.com', label: 'Email' },
-        { icon: FaMapMarkerAlt, text: '123 Paint Street, Color City', label: 'Address' },
+        { icon: FaMapMarkerAlt, text: ' Nawanku Zone, Katwe ll', label: 'Address' },
         { icon: FaClock, text: 'Mon-Sat: 9AM - 6PM', label: 'Hours' },
     ]
 

@@ -12,6 +12,7 @@ import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import { products } from '../../data/products'
 import { notFound } from 'next/navigation'
+import { formatUGX } from '../../utils/formatCurrency'
 
 export default function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params)
@@ -102,9 +103,13 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                             </p>
 
                             <div className="glass-card">
-                                <div className="flex items-baseline gap-3">
-                                    <span className="text-4xl font-bold gradient-text">${product.price}</span>
-                                    <span className="text-slate-500 line-through">${(product.price * 1.2).toFixed(2)}</span>
+                                <div className="flex items-baseline gap-3 flex-wrap">
+                                    <span className="text-3xl md:text-4xl font-bold gradient-text">
+                                        {formatUGX(product.price)}
+                                    </span>
+                                    <span className="text-slate-500 line-through">
+                                        {formatUGX(Math.round(product.price * 1.2))}
+                                    </span>
                                     <span className="bg-green-100 text-green-700 text-xs font-semibold px-2 py-1 rounded-full">
                                         Save 20%
                                     </span>

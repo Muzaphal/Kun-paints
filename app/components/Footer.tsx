@@ -1,7 +1,8 @@
 'use client'
 
-import { FaPaintBrush, FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa'
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const Footer = () => {
     const socialLinks = [
@@ -25,9 +26,15 @@ const Footer = () => {
                 <div className="glass rounded-3xl p-8 md:p-12">
                     <div className="grid md:grid-cols-4 gap-8">
                         <div className="md:col-span-2">
-                            <div className="flex items-center space-x-3 mb-4">
-                                <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-600/30">
-                                    <FaPaintBrush className="text-lg text-white" />
+                            {/* Logo */}
+                            <Link href="/" className="flex items-center gap-3 mb-4 group w-fit">
+                                <div className="relative w-12 h-12 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                    <Image
+                                        src="/images/logo.png"
+                                        alt="KUN Paints Logo"
+                                        fill
+                                        className="object-contain"
+                                    />
                                 </div>
                                 <div>
                                     <span className="text-xl font-bold gradient-text block leading-tight">
@@ -37,11 +44,13 @@ const Footer = () => {
                                         Quality Paints
                                     </span>
                                 </div>
-                            </div>
+                            </Link>
+
                             <p className="text-slate-600 mb-6 max-w-md">
                                 Your quality paints for a colorful tomorrow. Premium quality,
                                 vibrant colors, and lasting protection trusted worldwide.
                             </p>
+
                             <div className="flex space-x-3">
                                 {socialLinks.map((social, index) => (
                                     <a
@@ -99,7 +108,7 @@ const Footer = () => {
                     <div className="border-t border-slate-200 mt-8 pt-8 flex flex-col md:flex-row 
                         items-center justify-between gap-4">
                         <p className="text-slate-500 text-sm">
-                            © 2024 KUN Paints. All rights reserved.
+                            © 2026 KUN Paints. All rights reserved.
                         </p>
                         <div className="flex gap-6 text-sm">
                             <a href="#" className="text-slate-500 hover:text-blue-600 transition-colors">

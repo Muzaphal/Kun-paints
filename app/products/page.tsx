@@ -8,6 +8,7 @@ import { FaSearch, FaStar, FaFilter, FaArrowRight } from 'react-icons/fa'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { products, categories } from '../data/products'
+import { formatUGX } from '../utils/formatCurrency'
 
 export default function ProductsPage() {
     const [searchQuery, setSearchQuery] = useState('')
@@ -22,7 +23,6 @@ export default function ProductsPage() {
             return matchesSearch && matchesCategory
         })
 
-        // Sort
         switch (sortBy) {
             case 'price-low':
                 filtered = [...filtered].sort((a, b) => a.price - b.price)
@@ -76,7 +76,6 @@ export default function ProductsPage() {
                 <div className="max-w-7xl mx-auto">
                     <div className="glass rounded-2xl p-4 md:p-6">
                         <div className="grid md:grid-cols-3 gap-4">
-                            {/* Search */}
                             <div className="relative">
                                 <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
                                 <input
@@ -85,20 +84,19 @@ export default function ProductsPage() {
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                     className="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-xl 
-                           text-slate-700 placeholder-slate-400 focus:outline-none 
-                           focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"
+                                    text-slate-700 placeholder-slate-400 focus:outline-none 
+                                    focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"
                                 />
                             </div>
 
-                            {/* Sort */}
                             <div className="relative">
                                 <FaFilter className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
                                 <select
                                     value={sortBy}
                                     onChange={(e) => setSortBy(e.target.value)}
                                     className="w-full pl-11 pr-4 py-3 bg-white border border-slate-200 rounded-xl 
-                           text-slate-700 focus:outline-none focus:border-blue-500 
-                           focus:ring-2 focus:ring-blue-100 transition-all appearance-none cursor-pointer"
+                                    text-slate-700 focus:outline-none focus:border-blue-500 
+                                    focus:ring-2 focus:ring-blue-100 transition-all appearance-none cursor-pointer"
                                 >
                                     <option value="featured">Featured</option>
                                     <option value="price-low">Price: Low to High</option>
@@ -108,7 +106,6 @@ export default function ProductsPage() {
                                 </select>
                             </div>
 
-                            {/* Results count */}
                             <div className="flex items-center justify-center md:justify-end">
                                 <span className="text-slate-600">
                                     <span className="font-bold text-blue-600">{filteredProducts.length}</span> products found
@@ -116,14 +113,13 @@ export default function ProductsPage() {
                             </div>
                         </div>
 
-                        {/* Categories */}
                         <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-200">
                             {categories.map((category) => (
                                 <button
                                     key={category}
                                     onClick={() => setSelectedCategory(category)}
                                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
-                    ${selectedCategory === category
+                                    ${selectedCategory === category
                                             ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-600/30'
                                             : 'bg-white text-slate-600 hover:text-blue-600 hover:bg-blue-50 border border-slate-200'
                                         }`}
@@ -202,8 +198,8 @@ export default function ProductsPage() {
                                         </div>
 
                                         <div className="flex items-center justify-between pt-3 border-t border-slate-200">
-                                            <span className="text-xl font-bold gradient-text">
-                                                ${product.price}
+                                            <span className="text-lg font-bold gradient-text">
+                                                {formatUGX(product.price)}
                                             </span>
                                             <Link
                                                 href={`/products/${product.id}`}

@@ -1,8 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { FaPaintBrush, FaBars, FaTimes } from 'react-icons/fa'
+import { FaBars, FaTimes } from 'react-icons/fa'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 const Navbar = () => {
@@ -31,11 +32,17 @@ const Navbar = () => {
                     <div className="px-4 sm:px-6 lg:px-8">
                         <div className="flex items-center justify-between h-14">
                             {/* Logo */}
-                            <Link href="/" className="flex items-center space-x-2 group">
-                                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-600/30 group-hover:scale-110 transition-transform duration-300">
-                                    <FaPaintBrush className="text-lg text-white" />
+                            <Link href="/" className="flex items-center gap-3 group">
+                                <div className="relative w-12 h-12 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                                    <Image
+                                        src="/images/logo.png"
+                                        alt="KUN Paints Logo"
+                                        fill
+                                        className="object-contain"
+                                        priority
+                                    />
                                 </div>
-                                <div>
+                                <div className="hidden sm:block">
                                     <span className="text-xl font-bold gradient-text block leading-tight">
                                         KUN Paints
                                     </span>
@@ -54,14 +61,14 @@ const Navbar = () => {
                                             key={link.name}
                                             href={link.href}
                                             className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 relative group
-                        ${isActive
+                                                ${isActive
                                                     ? 'text-blue-600 bg-blue-50'
                                                     : 'text-slate-700 hover:text-blue-600 hover:bg-blue-50/70'
                                                 }`}
                                         >
                                             {link.name}
                                             <span className={`absolute bottom-1 left-1/2 -translate-x-1/2 h-0.5 bg-blue-600 transition-all duration-300 
-                        ${isActive ? 'w-6' : 'w-0 group-hover:w-6'}`}></span>
+                                                ${isActive ? 'w-6' : 'w-0 group-hover:w-6'}`}></span>
                                         </Link>
                                     )
                                 })}

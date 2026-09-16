@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FaArrowRight } from 'react-icons/fa'
 import { products } from '../data/products'
+import { formatUGX } from '../utils/formatCurrency'
 
 const Products = () => {
     const featuredProducts = products.slice(0, 4)
@@ -62,8 +63,8 @@ const Products = () => {
                                     {product.description}
                                 </p>
                                 <div className="flex items-center justify-between">
-                                    <span className="text-xl font-bold gradient-text">
-                                        ${product.price}
+                                    <span className="text-lg font-bold gradient-text">
+                                        {formatUGX(product.price)}
                                     </span>
                                     <Link
                                         href={`/products/${product.id}`}

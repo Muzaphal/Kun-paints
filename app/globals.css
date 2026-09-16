@@ -85,3 +85,9 @@
     transform: translate(0px, 0px) scale(1);
   }
 }
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
