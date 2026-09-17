@@ -1,17 +1,21 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { FaBars, FaTimes } from 'react-icons/fa'
+import { FaBars, FaTimes, FaShoppingCart } from 'react-icons/fa'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import { useCart } from '../context/CartContext'
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
+    const [mounted, setMounted] = useState(false)
     const pathname = usePathname()
+    const { totalItems } = useCart()
 
     useEffect(() => {
+        setMounted(true)
         const handleScroll = () => setScrolled(window.scrollY > 20)
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
@@ -72,18 +76,47 @@ const Navbar = () => {
                                         </Link>
                                     )
                                 })}
-                                <Link href="/#contact" className="ml-4 glass-button text-sm py-2.5 px-5">
+
+                                {/* Cart icon (desktop) */}
+                                <Link
+                                    href="/cart"
+                                    className="relative ml-2 p-3 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300"
+                                    aria-label="Shopping cart"
+                                >
+                                    <FaShoppingCart className="text-lg" />
+                                    {mounted && totalItems > 0 && (
+                                        <span className="absolute -top-1 -right-1 min-w-[20px] h-5 px-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-bold rounded-full flex items-center justify-center shadow-lg">
+                                            {totalItems > 99 ? '99+' : totalItems}
+                                        </span>
+                                    )}
+                                </Link>
+
+                                <Link href="/#contact" className="ml-2 glass-button text-sm py-2.5 px-5">
                                     Get Quote
                                 </Link>
                             </div>
 
-                            {/* Mobile Menu Button */}
-                            <button
-                                onClick={() => setIsOpen(!isOpen)}
-                                className="md:hidden text-slate-700 p-2 hover:text-blue-600 transition-colors"
-                            >
-                                {isOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
-                            </button>
+                            {/* Mobile right side */}
+                            <div className="md:hidden flex items-center gap-1">
+                                <Link
+                                    href="/cart"
+                                    className="relative p-2 text-slate-700 hover:text-blue-600 transition-colors"
+                                    aria-label="Shopping cart"
+                                >
+                                    <FaShoppingCart size={20} />
+                                    {mounted && totalItems > 0 && (
+                                        <span className="absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                                            {totalItems > 99 ? '99+' : totalItems}
+                                        </span>
+                                    )}
+                                </Link>
+                                <button
+                                    onClick={() => setIsOpen(!isOpen)}
+                                    className="p-2 text-slate-700 hover:text-blue-600 transition-colors"
+                                >
+                                    {isOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -101,6 +134,13 @@ const Navbar = () => {
                                         {link.name}
                                     </Link>
                                 ))}
+                                <Link
+                                    href="/cart"
+                                    className="block px-4 py-3 text-slate-700 font-medium hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all duration-200"
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    Cart {mounted && totalItems > 0 && `(${totalItems})`}
+                                </Link>
                                 <Link
                                     href="/#contact"
                                     className="block glass-button text-center mt-4"

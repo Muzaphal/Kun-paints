@@ -1,29 +1,63 @@
 'use client'
 
-import { use } from 'react'
+import { use, useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
     FaStar, FaArrowLeft, FaShoppingCart, FaCheck, FaTruck,
-    FaShieldAlt, FaUndo
+    FaShieldAlt, FaUndo, FaWhatsapp, FaPlus, FaMinus, FaCheckCircle
 } from 'react-icons/fa'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
+import OrderFormModal from '../../components/OrderFormModal'
 import { products } from '../../data/products'
 import { notFound } from 'next/navigation'
 import { formatUGX } from '../../utils/formatCurrency'
+import { useCart } from '../../context/CartContext'
 
 export default function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params)
     const product = products.find((p) => p.id === id)
+
+    const { addToCart } = useCart()
+    const [quantity, setQuantity] = useState(1)
+    const [added, setAdded] = useState(false)
+    const [showOrderModal, setShowOrderModal] = useState(false)
 
     if (!product) {
         notFound()
     }
 
     const Icon = product.icon
-    const relatedProducts = products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 4)
+    const relatedProducts = products
+        .filter((p) => p.category === product.category && p.id !== product.id)
+        .slice(0, 4)
+
+    // ---------------------------------------------------------------
+    // Add to Cart
+    // ---------------------------------------------------------------
+    const handleAddToCart = () => {
+        addToCart(
+            {
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.image,
+                category: product.category,
+            },
+            quantity
+        )
+        setAdded(true)
+        setTimeout(() => setAdded(false), 2000)
+    }
+
+    // ---------------------------------------------------------------
+    // Buy Now → opens the order form modal
+    // ---------------------------------------------------------------
+    const handleBuyNow = () => {
+        setShowOrderModal(true)
+    }
 
     return (
         <main className="min-h-screen">
@@ -32,7 +66,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
             <section className="pt-32 pb-12 px-4">
                 <div className="max-w-7xl mx-auto">
                     {/* Breadcrumb */}
-                    <nav className="flex items-center gap-2 text-sm text-slate-500 mb-8">
+                    <nav className="flex items-center gap-2 text-sm text-slate-500 mb-8 flex-wrap">
                         <Link href="/" className="hover:text-blue-600 transition-colors">Home</Link>
                         <span>/</span>
                         <Link href="/products" className="hover:text-blue-600 transition-colors">Products</Link>
@@ -46,7 +80,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.6 }}
-                            className="glass rounded-3xl overflow-hidden"
+                            className="glass rounded-3xl overflow-hidden md:sticky md:top-32"
                         >
                             <div className="relative aspect-square">
                                 <Image
@@ -132,21 +166,72 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                                 </div>
                             </div>
 
+                            {/* Quantity selector */}
+                            <div className="flex items-center gap-4 pt-2 flex-wrap">
+                                <span className="text-sm font-semibold text-slate-700">Quantity:</span>
+                                <div className="flex items-center gap-2 bg-white border border-slate-200 rounded-xl p-1">
+                                    <button
+                                        onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                                        className="w-9 h-9 rounded-lg hover:bg-blue-50 text-slate-700 hover:text-blue-600 flex items-center justify-center transition-colors"
+                                        aria-label="Decrease quantity"
+                                    >
+                                        <FaMinus className="text-xs" />
+                                    </button>
+                                    <span className="w-10 text-center font-bold text-slate-800">{quantity}</span>
+                                    <button
+                                        onClick={() => setQuantity((q) => q + 1)}
+                                        className="w-9 h-9 rounded-lg hover:bg-blue-50 text-slate-700 hover:text-blue-600 flex items-center justify-center transition-colors"
+                                        aria-label="Increase quantity"
+                                    >
+                                        <FaPlus className="text-xs" />
+                                    </button>
+                                </div>
+                                <span className="text-sm text-slate-500">
+                                    Total: <span className="font-bold text-slate-800">{formatUGX(product.price * quantity)}</span>
+                                </span>
+                            </div>
+
                             {/* Actions */}
                             <div className="flex flex-wrap gap-3 pt-2">
-                                <button className="glass-button flex items-center gap-2 flex-1 justify-center min-w-[200px]">
-                                    <FaShoppingCart />
-                                    Add to Cart
+                                <button
+                                    onClick={handleAddToCart}
+                                    className={`flex items-center gap-2 flex-1 justify-center min-w-[180px] px-6 py-3 rounded-full font-semibold shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 ${added
+                                        ? 'bg-green-600 text-white shadow-green-600/30'
+                                        : 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-blue-600/30'
+                                        }`}
+                                >
+                                    {added ? (
+                                        <>
+                                            <FaCheckCircle />
+                                            Added!
+                                        </>
+                                    ) : (
+                                        <>
+                                            <FaShoppingCart />
+                                            Add to Cart
+                                        </>
+                                    )}
                                 </button>
-                                <button className="glass-button-outline flex-1 justify-center min-w-[200px]">
+
+                                <button
+                                    onClick={handleBuyNow}
+                                    className="flex items-center gap-2 flex-1 justify-center min-w-[180px] px-6 py-3 rounded-full font-semibold bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-lg shadow-green-600/30 hover:shadow-green-600/50 hover:scale-105 active:scale-95 transition-all duration-300"
+                                >
+                                    <FaWhatsapp className="text-lg" />
                                     Buy Now
                                 </button>
                             </div>
 
+                            {/* WhatsApp note */}
+                            <p className="text-xs text-slate-500 flex items-center gap-1">
+                                <FaWhatsapp className="text-green-600" />
+                                Buy Now opens a quick form, then sends your order via WhatsApp.
+                            </p>
+
                             {/* Trust badges */}
                             <div className="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200">
                                 {[
-                                    { icon: FaTruck, label: 'Free Shipping', desc: 'Orders over $100' },
+                                    { icon: FaTruck, label: 'Free Shipping', desc: 'Orders over UGX 300K' },
                                     { icon: FaShieldAlt, label: 'Warranty', desc: '5 Years' },
                                     { icon: FaUndo, label: 'Returns', desc: '30 Days' },
                                 ].map((item, idx) => (
@@ -197,7 +282,7 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                                         </div>
                                         <div className="p-4">
                                             <h3 className="font-bold text-slate-900 mb-1 line-clamp-1">{rp.name}</h3>
-                                            <p className="text-lg font-bold gradient-text">${rp.price}</p>
+                                            <p className="text-base font-bold gradient-text">{formatUGX(rp.price)}</p>
                                         </div>
                                     </Link>
                                 </motion.div>
@@ -206,6 +291,22 @@ export default function ProductDetailPage({ params }: { params: Promise<{ id: st
                     </div>
                 </section>
             )}
+
+            {/* Order Form Modal */}
+            <OrderFormModal
+                isOpen={showOrderModal}
+                onClose={() => setShowOrderModal(false)}
+                items={[
+                    {
+                        name: product.name,
+                        category: product.category,
+                        price: product.price,
+                        quantity: quantity,
+                    },
+                ]}
+                totalPrice={product.price * quantity}
+                totalItems={quantity}
+            />
 
             <Footer />
         </main>

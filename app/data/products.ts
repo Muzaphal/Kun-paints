@@ -25,7 +25,7 @@ export const products: Product[] = [
         name: 'Vinyl Silk Paint',
         category: 'Interior',
         price: 250000,          // ← was 45.99 USD
-        image: '/images/products/silk.png',
+        image: '/images/products/silk.jpg',
         description: 'Luxurious matte finish interior paint with superior coverage and durability.',
         features: ['Low VOC', 'Washable', 'Anti-bacterial', 'Quick Dry'],
         rating: 4.8,
@@ -39,7 +39,7 @@ export const products: Product[] = [
         name: 'Texture Paint',
         category: 'Exterior',
         price: 180000,          // ← was 59.99 USD
-        image: '/images/products/texture paint.png',
+        image: '/images/products/texture.jpg',
         description: 'All-weather exterior paint with UV protection and 10-year warranty.',
         features: ['UV Resistant', 'Waterproof', 'Anti-fungal', 'Fade Resistant'],
         rating: 4.9,
@@ -48,19 +48,19 @@ export const products: Product[] = [
         inStock: true,
         icon: FaBuilding,
     },
-    // {
-    //     id: 'industrial-pro-01',
-    //     name: 'Industrial Pro Coating',
-    //     category: 'Industrial',
-    //     price: 340000,          // ← was 89.99 USD
-    //     image: '/images/products/industrial-1.jpg',
-    //     description: 'Heavy-duty industrial coating for extreme conditions and surfaces.',
-    //     features: ['Corrosion Resistant', 'Heat Resistant', 'Chemical Resistant'],
-    //     rating: 4.7,
-    //     reviews: 156,
-    //     inStock: true,
-    //     icon: FaCar,
-    // },
+    {
+        id: 'Enamel-pro-01',
+        name: 'Undercoat',
+        category: 'Enamel',
+        price: 55000,          // ← was 89.99 USD
+        image: '/images/products/underjerry.jpg',
+        description: 'Heavy-duty industrial coating for extreme conditions and surfaces.',
+        features: ['Corrosion Resistant', 'Heat Resistant', 'Chemical Resistant'],
+        rating: 4.7,
+        reviews: 156,
+        inStock: true,
+        icon: FaCar,
+    },
     // {
     //     id: 'wood-care-01',
     //     name: 'Wood Care Premium',
@@ -93,8 +93,8 @@ export const products: Product[] = [
         id: 'paint-01',
         name: 'Primer Paint',
         category: 'Enamel',
-        price: 75000,           // ← was 19.99 USD
-        image: '/images/products/primer.png',
+        price: 100000,           // ← was 19.99 USD
+        image: '/images/products/primer.jpg',
         description: 'Fast-drying spray paint for quick touch-ups and small projects.',
         features: ['Fast Dry', 'Even Coverage', 'Multi-Surface'],
         rating: 4.6,
@@ -104,10 +104,10 @@ export const products: Product[] = [
     },
     {
         id: 'ceiling-white-01',
-        name: 'Undercoat Paint',
+        name: 'Matt Ceiling Paint',
         category: 'Interior',
-        price: 55000,          // ← was 39.99 USD
-        image: '/images/products/undercoat.png',
+        price: 250000,          // ← was 39.99 USD
+        image: '/images/products/matt.jpg',
         description: 'Bright white ceiling paint that minimizes drips and splatter.',
         features: ['Non-Drip', 'Bright White', 'Single Coat'],
         rating: 4.7,
@@ -115,26 +115,26 @@ export const products: Product[] = [
         inStock: true,
         icon: FaPaintRoller,
     },
-    // {
-    //     id: 'gloss-enamel-01',
-    //     name: 'High Gloss Enamel',
-    //     category: 'Enamel',
-    //     price: 210000,          // ← was 54.99 USD
-    //     image: '/images/products/gloss-1.jpg',
-    //     description: 'High-gloss enamel paint for a mirror-like finish on any surface.',
-    //     features: ['High Gloss', 'Durable', 'Easy Clean'],
-    //     rating: 4.8,
-    //     reviews: 167,
-    //     badge: 'Popular',
-    //     inStock: true,
-    //     icon: FaFillDrip,
-    // },
     {
-        id: 'texture-art-01',
-        name: 'Texture Art Finish',
-        category: 'Specialty',
-        price: 180000,          // ← was 64.99 USD
-        image: '/images/products/texture paint.png',
+        id: 'gloss-enamel-01',
+        name: 'High Gloss Enamel',
+        category: 'Enamel',
+        price: 250000,          // ← was 54.99 USD
+        image: '/images/products/gloss.jpg',
+        description: 'High-gloss enamel paint for a mirror-like finish on any surface.',
+        features: ['High Gloss', 'Durable', 'Easy Clean'],
+        rating: 4.8,
+        reviews: 167,
+        badge: 'Popular',
+        inStock: true,
+        icon: FaFillDrip,
+    },
+    {
+        id: 'Undercoat',
+        name: 'Undercoat',
+        category: 'Interior',
+        price: 55000,          // ← was 64.99 USD
+        image: '/images/products/undercoat.jpg',
         description: 'Create stunning textured walls with this artistic finish paint.',
         features: ['Textured', 'Artistic', 'Easy to Use'],
         rating: 4.9,
