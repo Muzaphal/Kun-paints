@@ -24,7 +24,7 @@ export const products: Product[] = [
         id: 'interior-premium-01',
         name: 'Vinyl Silk Paint',
         category: 'Interior',
-        price: 250000,          // ← was 45.99 USD
+        price: 280000,          // ← was 45.99 USD
         image: '/images/products/silk.jpg',
         description: 'Luxurious matte finish interior paint with superior coverage and durability.',
         features: ['Low VOC', 'Washable', 'Anti-bacterial', 'Quick Dry'],
@@ -38,7 +38,7 @@ export const products: Product[] = [
         id: 'exterior',
         name: 'Texture Paint',
         category: 'Exterior',
-        price: 180000,          // ← was 59.99 USD
+        price: 130000,          // ← was 59.99 USD
         image: '/images/products/texture.jpg',
         description: 'All-weather exterior paint with UV protection and 10-year warranty.',
         features: ['UV Resistant', 'Waterproof', 'Anti-fungal', 'Fade Resistant'],
@@ -61,34 +61,34 @@ export const products: Product[] = [
         inStock: true,
         icon: FaCar,
     },
-    // {
-    //     id: 'wood-care-01',
-    //     name: 'Wood Care Premium',
-    //     category: 'Wood',
-    //     price: 200000,          // ← was 52.99 USD
-    //     image: '/images/products/wood-1.jpg',
-    //     description: 'Specialized wood finish that enhances grain and provides lasting protection.',
-    //     features: ['UV Protection', 'Water Repellent', 'Enhances Grain'],
-    //     rating: 4.8,
-    //     reviews: 145,
-    //     badge: 'New',
-    //     inStock: true,
-    //     icon: FaTree,
-    // },
-    // {
-    //     id: 'metallic-gold-01',
-    //     name: 'Metallic Gold Finish',
-    //     category: 'Specialty',
-    //     price: 300000,          // ← was 79.99 USD
-    //     image: '/images/products/metallic-1.jpg',
-    //     description: 'Premium metallic finish for decorative and accent walls.',
-    //     features: ['Metallic Shine', 'Easy Apply', 'Long Lasting'],
-    //     rating: 4.9,
-    //     reviews: 98,
-    //     badge: 'Limited',
-    //     inStock: true,
-    //     icon: FaPalette,
-    // },
+    {
+        id: 'mosaic-care-01',
+        name: 'Mosaic Paint',
+        category: 'Enamel',
+        price: 140000,          // ← was 52.99 USD
+        image: '/images/products/mosaic.jpg',
+        description: 'Specialized wall finish that enhances wall and provides lasting protection.',
+        features: ['UV Protection', 'Water Repellent', 'Enhances Wall'],
+        rating: 4.8,
+        reviews: 145,
+        badge: 'New',
+        inStock: true,
+        icon: FaTree,
+    },
+    {
+        id: 'silk-4ltr',
+        name: 'Silk 4Ltrs Paint',
+        category: 'Specialty',
+        price: 55000,          // ← was 79.99 USD
+        image: '/images/products/silk4L.jpg',
+        description: 'Premium metallic finish for decorative and accent walls.',
+        features: ['Metallic Shine', 'Easy Apply', 'Long Lasting'],
+        rating: 4.9,
+        reviews: 98,
+        badge: 'Limited',
+        inStock: true,
+        icon: FaPalette,
+    },
     {
         id: 'paint-01',
         name: 'Primer Paint',
@@ -106,7 +106,7 @@ export const products: Product[] = [
         id: 'ceiling-white-01',
         name: 'Matt Ceiling Paint',
         category: 'Interior',
-        price: 250000,          // ← was 39.99 USD
+        price: 270000,          // ← was 39.99 USD
         image: '/images/products/matt.jpg',
         description: 'Bright white ceiling paint that minimizes drips and splatter.',
         features: ['Non-Drip', 'Bright White', 'Single Coat'],
@@ -142,19 +142,45 @@ export const products: Product[] = [
         inStock: true,
         icon: FaBrush,
     },
-    // {
-    //     id: 'colorant-tint-01',
-    //     name: 'Universal Colorant',
-    //     category: 'Accessories',
-    //     price: 50000,           // ← was 12.99 USD
-    //     image: '/images/products/tint-1.jpg',
-    //     description: 'Universal colorant to customize your paint colors perfectly.',
-    //     features: ['Universal', 'Vibrant Colors', 'Easy Mix'],
-    //     rating: 4.6,
-    //     reviews: 245,
-    //     inStock: true,
-    //     icon: FaTint,
-    // },
+    {
+        id: 'weatherguad-01',
+        name: 'Weatherguad 4Litres Paint',
+        category: 'Exterior',
+        price: 60000,           // ← was 12.99 USD
+        image: '/images/products/Weatherguard4L.jpg',
+        description: 'Universal colorant to customize your paint colors perfectly.',
+        features: ['Universal', 'Vibrant Colors', 'Easy Mix'],
+        rating: 4.6,
+        reviews: 245,
+        inStock: true,
+        icon: FaTint,
+    },
+    {
+        id: 'matt-01',
+        name: 'Matt 4Litres Paint',
+        category: 'Interior',
+        price: 45000,           // ← was 12.99 USD
+        image: '/images/products/matt4L.jpg',
+        description: 'Universal colorant to customize your paint colors perfectly.',
+        features: ['Universal', 'Vibrant Colors', 'Easy Mix'],
+        rating: 4.6,
+        reviews: 245,
+        inStock: true,
+        icon: FaTint,
+    },
+    {
+        id: 'weatherguad',
+        name: 'Weatherguad Paint',
+        category: 'Exterior',
+        price: 300000,           // ← was 12.99 USD
+        image: '/images/products/Weathergurd.jpg',
+        description: 'Universal colorant to customize your paint colors perfectly.',
+        features: ['Universal', 'Vibrant Colors', 'Easy Mix'],
+        rating: 4.6,
+        reviews: 245,
+        inStock: true,
+        icon: FaTint,
+    },
 ]
 
 export const categories = ['All', 'Interior', 'Exterior', 'Enamel',]
