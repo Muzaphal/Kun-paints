@@ -173,7 +173,7 @@ export const products: Product[] = [
         name: 'Weatherguad Paint',
         category: 'Exterior',
         price: 300000,           // ← was 12.99 USD
-        image: '/images/products/Weathergurd.jpg',
+        image: '/images/products/weathergurd.jpg',
         description: 'Universal colorant to customize your paint colors perfectly.',
         features: ['Universal', 'Vibrant Colors', 'Easy Mix'],
         rating: 4.6,
